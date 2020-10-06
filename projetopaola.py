@@ -1,5 +1,6 @@
 import pygame
 from random import randint
+from funcoes import *
 
 pygame.init()
 
@@ -7,19 +8,19 @@ pygame.init()
 lagalt= (900,600)
 tela = pygame.display.set_mode(lagalt)
 
-fundo=pygame.image.load('fundo.png')
+fundo=pygame.image.load('imagens/fundo.png')
 
-pygame.mixer.music.load('KoopaCastle.mp3')
+pygame.mixer.music.load('sons/KoopaCastle.mp3')
 pygame.mixer.music.play(-1)
 
 
 #nome do jogo e icone
 pygame.display.set_caption('Magic')
-icone = pygame.image.load('hat.png')
+icone = pygame.image.load('imagens/hat.png')
 pygame.display.set_icon(icone)
 
 #jogador
-jogadorfoto = pygame.image.load('clown.png')
+jogadorfoto = pygame.image.load('imagens/clown.png')
 jogadorX = 0
 jogadorY = 300
 jogadorXmuda=0
@@ -29,10 +30,10 @@ vidas=3
 
 #pontos
 pontos=0
-fonte = pygame.font.Font('OldLondon.ttf',32)
+fonte = pygame.font.Font('fontes/OldLondon.ttf',32)
 pontosX=0
 pontosY=0
-fontef = pygame.font.Font('OldLondon.ttf',64)
+fontef = pygame.font.Font('fontes/OldLondon.ttf',64)
 
 #inimigo
 
@@ -45,14 +46,14 @@ inimigoATV=True
 inimigos=5
 for i in range(inimigos):
     
-    inimigofoto.append(pygame.image.load('spiral.png'))
+    inimigofoto.append(pygame.image.load('imagens/spiral.png'))
     inimigoX.append(randint(750,836))
     inimigoY.append(randint(0,536))
     inimigoXmuda.append(0)
     inimigoYmuda.append(3)
 
 #bala jogador
-balafoto = pygame.image.load('moon.png')
+balafoto = pygame.image.load('imagens/moon.png')
 balaX=0
 balaY=0
 balaXmuda=8
@@ -67,7 +68,7 @@ balaIXmuda=[]
 balaIatira=[]
 for i in range(inimigos):
     
-    balaIfoto.append(pygame.image.load('taoism.png'))
+    balaIfoto.append(pygame.image.load('imagens/taoism.png'))
     balaIX.append(0)
     balaIY.append(0)
     balaIXmuda.append(-7)
@@ -89,26 +90,7 @@ def balaI(x,y,i):
     balaIatira[i]=0
     tela.blit(balaIfoto[i],(x,y))
 
-def colisaoCinimigo(Xinimigo,Yinimigo,Xbala,Ybala):
-    distancia = (((Xinimigo - Xbala)**2)+((Yinimigo - Ybala)**2))**0.5
-    if distancia <20:
-        return True
-    else:
-        return False
 
-def colisaoCbalas(XbalaI,YbalaI,Xbala,Ybala):
-    distancia = (((XbalaI - Xbala)**2)+((YbalaI - Ybala)**2))**0.5
-    if distancia <20:
-        return True
-    else:
-        return False
-
-def colisaoCjogador(Xjogador,Yjogador,XbalaI,YbalaI):
-    distancia = (((Xjogador - XbalaI)**2)+((Yjogador - YbalaI)**2))**0.5
-    if distancia <20:
-        return True
-    else:
-        return False
 def placar(x,y):
     ponto = fonte.render('Pontos:'+str(pontos),True,(0,255,0))
     tela.blit(ponto,(x,y))
@@ -120,13 +102,13 @@ def life(x,y):
 def dificult(x,y):
     dificu = fonte.render('Nível:'+str(dificuldade),True,(0,0,0))
     tela.blit(dificu,(x,y))
-    
+
 def gameover():
     fim = fontef.render('FIM DE JOGO',True,(0,0,0))
     continua = fonte.render('Continuar?(s ou n)',True,(0,0,0))
     tela.blit(fim,(300,250))
-    tela.blit(continua,(310,315))    
-    
+    tela.blit(continua,(310,315))
+
 #loop do jogo
 aberto = True
 
@@ -148,7 +130,7 @@ while aberto:
                 jogadorYmuda = 3
             if evento.key == pygame.K_z:
                 if balaatira == 1 :
-                    balasom = pygame.mixer.Sound('fogojogador.wav')
+                    balasom = pygame.mixer.Sound('sons/fogojogador.wav')
                     balasom.play()
                     balaX=jogadorX
                     balaY=jogadorY
@@ -208,7 +190,7 @@ while aberto:
         #colisao com o inimigo
         colisao=colisaoCinimigo(inimigoX[i],inimigoY[i],balaX,balaY)
         if colisao == True:
-            somCI = pygame.mixer.Sound('acertainimigo.wav')
+            somCI = pygame.mixer.Sound('sons/acertainimigo.wav')
             #um pouco atrasado,cortar mais
             somCI.play()
             balaX=jogadorX
@@ -219,7 +201,7 @@ while aberto:
         inimigo(inimigoX[i],inimigoY[i],i)
         if inimigoATV== True:
             if balaIatira[i] == 1:
-                balasomI=pygame.mixer.Sound('fogoinimigo.wav')
+                balasomI=pygame.mixer.Sound('sons/fogoinimigo.wav')
                 balasomI.play()
                 balaIX[i] = inimigoX[i]
                 balaIY[i] = inimigoY[i]
@@ -236,7 +218,7 @@ while aberto:
         #colisao entre as balas
         colisaoB=colisaoCbalas(balaIX[i],balaIY[i],balaX,balaY)
         if colisaoB == True:
-            balasomIJ = pygame.mixer.Sound('acertabalas.wav')
+            balasomIJ = pygame.mixer.Sound('sons/acertabalas.wav')
             balasomIJ.play()
             balaX=jogadorX
             balaIX[i]=inimigoX[i]
@@ -245,7 +227,7 @@ while aberto:
         #colisao com o jogador
         colisaoJ = colisaoCjogador(jogadorX,jogadorY+32,balaIX[i],balaIY[i])
         if colisaoJ == True:   #emcima não pega nele
-            somCJ = pygame.mixer.Sound('acertajogador.wav')
+            somCJ = pygame.mixer.Sound('sons/acertajogador.wav')
             somCJ.play()
             balaIX[i] = inimigoX[i]
             balaIatira[i]=1
