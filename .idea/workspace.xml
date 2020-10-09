@@ -19,23 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="985e3489-002c-4074-9574-ea36efa49da3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/funcoes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KoopaCastle.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OldLondon.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acertabalas.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acertainimigo.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/acertajogador.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/clown.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fogoinimigo.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fogojogador.wav" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fundo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/moon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/projetopaola.py" beforeDir="false" afterPath="$PROJECT_DIR$/projetopaola.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spiral.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/taoism.png" beforeDir="false" />
-    </list>
+    <list default="true" id="985e3489-002c-4074-9574-ea36efa49da3" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -113,23 +97,24 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1345" height="173" key="GridCell.Tab.0.bottom" timestamp="1601996654128">
+    <state width="1345" height="173" key="GridCell.Tab.0.bottom" timestamp="1602171626822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="173" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601996654128" />
-    <state width="1345" height="173" key="GridCell.Tab.0.center" timestamp="1601996654126">
+    <state width="1345" height="173" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602171626822" />
+    <state width="1345" height="173" key="GridCell.Tab.0.center" timestamp="1602171626818">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="173" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601996654126" />
-    <state width="1345" height="173" key="GridCell.Tab.0.left" timestamp="1601996654125">
+    <state width="1345" height="173" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602171626818" />
+    <state width="1345" height="173" key="GridCell.Tab.0.left" timestamp="1602171626817">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="173" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601996654125" />
-    <state width="1345" height="173" key="GridCell.Tab.0.right" timestamp="1601996654127">
+    <state width="1345" height="173" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602171626817" />
+    <state width="1345" height="173" key="GridCell.Tab.0.right" timestamp="1602171626820">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="173" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601996654127" />
+    <state width="1345" height="173" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602171626820" />
   </component>
 </project>
