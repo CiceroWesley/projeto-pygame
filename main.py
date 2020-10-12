@@ -2,6 +2,7 @@ import pygame,sys
 from pygame.locals import *
 from random import randint
 from funcoes import *
+from time import sleep
 
 pygame.init()
 
@@ -109,6 +110,53 @@ def gameover():
     continua = fonte.render('Continuar?(s ou n)',True,(0,0,0))
     tela.blit(fim,(300,250))
     tela.blit(continua,(310,315))
+
+def animation():
+    fundo2 = pygame.image.load('imagens/fundoab.png')
+    running = True
+    maior = False
+    playerX = 150
+    playerY = 260
+    playerXmuda = 2.35
+    playerYmuda = 0
+
+    enemyX = []
+    enemyY = []
+    enemyXmuda = []
+    enemyYmuda = []
+    enemy = 5
+    posY = [0,130,260,390,520]
+    for i in range(enemy):
+
+        #enemyfoto.append(pygame.image.load('imagens/spiral.png'))
+        enemyX.append(0)
+        enemyY.append(posY[i])
+        enemyXmuda.append(2.50)
+        enemyYmuda.append(0)
+    while running:
+        tela.blit(fundo2,(0,0))
+        for evento in pygame.event.get():
+            if evento.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+
+        for i in range(enemy):
+            enemyX[i] += enemyXmuda[i]
+            inimigo(enemyX[i], enemyY[i], i)
+
+        playerX+=playerXmuda
+        jogador(playerX,playerY)
+        if playerX > 985:
+            gamename = fontef.render('Nome do Jogo',True,(0,0,0))
+            tela.blit(gamename,(450,300))
+
+        if playerX > 1000:
+            sleep(3)
+            running=False
+        pygame.display.update()
+
+
 def gameloop():
     #loop do jogo
     global jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas, dificuldade
@@ -262,4 +310,6 @@ def gameloop():
         life(0,27)
         dificult(800,0)
         pygame.display.update()
+
+animation()
 gameloop()
