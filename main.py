@@ -27,7 +27,7 @@ jogadorX = 0
 jogadorY = 300
 jogadorXmuda=0
 jogadorYmuda=0
-dificuldade=1
+dificuldade=1  #alterar a dificuldade no menu inciail em 1, 2 e 3.
 vidas=3
 
 #pontos
@@ -102,7 +102,7 @@ def life(x,y):
     tela.blit(vida,(x,y))
 
 def dificult(x,y):
-    dificu = fonte.render('Nível:'+str(dificuldade),True,(0,0,0))
+    dificu = fonte.render('Dificuldade:'+str(dificuldade),True,(0,0,0))
     tela.blit(dificu,(x,y))
 
 def gameover():
@@ -139,6 +139,9 @@ def animation():
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_p:
+                    running = False
 
 
         for i in range(enemy):
@@ -147,6 +150,11 @@ def animation():
 
         playerX+=playerXmuda
         jogador(playerX,playerY)
+        pularanimacao = fonte.render('Pressiona P para pular...', True, (0,0,0))
+
+        if playerX > 100 and playerX < 300:
+            tela.blit(pularanimacao,(0,550))
+
         if playerX > 985:
             gamename = fontef.render('Nome do Jogo',True,(0,0,0))
             tela.blit(gamename,(450,300))
@@ -189,7 +197,7 @@ def gameloop():
                 if evento.key == pygame.K_s and vidas==0:
                     vidas=3
                     pontos=0
-                    dificuldade=1
+                    #dificuldade=1 dificuldade vai para o menu inicial do jogo
                     jogadorX=0
                     jogadorY=300
                     for j in range(inimigos):
@@ -241,7 +249,7 @@ def gameloop():
             colisao=colisaoCinimigo(inimigoX[i],inimigoY[i],balaX,balaY)
             if colisao == True:
                 somCI = pygame.mixer.Sound('sons/acertainimigo.wav')
-                #um pouco atrasado,cortar mais
+                #os volumes dos sons não estão iguais
                 somCI.play()
                 balaX=jogadorX
                 balaatira=1
@@ -290,13 +298,9 @@ def gameloop():
         if balaatira == 0:
              bala(balaX,balaY)
              balaX += balaXmuda
-        #dificuldade
-        if pontos==10:
-            dificuldade=2
-        elif pontos==20:
-            dificuldade=3
-        elif pontos==40:
-            dificuldade=4
+        #níveis
+
+
         #fim de jogo
         if vidas == 0:
             gameover()
@@ -308,7 +312,7 @@ def gameloop():
         jogador(jogadorX,jogadorY)
         placar(pontosX,pontosY)
         life(0,27)
-        dificult(800,0)
+        dificult(750,0)
         pygame.display.update()
 
 animation()
