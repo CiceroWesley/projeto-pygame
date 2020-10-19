@@ -331,8 +331,8 @@ def gameloop():
             jogadorX=3000
             jogadorY=3000
             #dificuldade era pra aumentar em 1 quando passa de fase
-            #dificuldade += 1 #bugou quando fiz isso
-
+            dificuldade += 1 #bugou quando fiz isso
+            pontos = 0
         #perdeu
         elif vidas == 0:
             gameover()
