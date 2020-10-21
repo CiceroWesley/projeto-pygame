@@ -198,6 +198,10 @@ def gameloop():
                     jogadorYmuda = -5
                 if evento.key == pygame.K_DOWN:
                     jogadorYmuda = 5
+                    
+                #tecla secreta    
+                if evento.key == pygame.K_f:
+                    pontos = 10
 
                 #tecla z para atirar
                 if evento.key == pygame.K_z:
