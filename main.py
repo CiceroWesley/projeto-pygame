@@ -163,7 +163,7 @@ def animation():
         pularanimacao = fonte.render('Pressiona P para pular...', True, (0,0,0))
 
         #print 'Pressiona P para pular...'
-        if playerX > 50 and playerX < 1000:  #(50 é maior q 150)
+        if playerX > 50 and playerX < 1000:
             tela.blit(pularanimacao,(0,550))
 
         #print nome do jogo
@@ -188,7 +188,7 @@ def gameloop():
                 pygame.quit()
                 sys.exit()
 
-            if evento.type == pygame.KEYDOWN:
+            if evento.type == pygame.KEYDOWN and vidas > 0 and pontos < 10:
                 #teclas para jogador se mover
                 if evento.key == pygame.K_LEFT:
                     jogadorXmuda = -5
@@ -215,9 +215,10 @@ def gameloop():
                 #tecla h para inimigos pararem de atirar e suas balas não tem efeito
                 if evento.key == pygame.K_h:
                     inimigoATV= False
+            if evento.type == pygame.KEYDOWN and (vidas==0 or pontos>=10):
 
                 #tecla s para jogar de novo (codigo para reiniciar o jogo)
-                if evento.key == pygame.K_s and (vidas==0 or pontos>=10):
+                if evento.key == pygame.K_s:
                     vidas=3
                     pontos=0
                     jogadorX=0
@@ -229,7 +230,7 @@ def gameloop():
                         inimigoY[j] = randint(0,536)
 
                 #tecla n para sair quando jogo acabar
-                if evento.key == pygame.K_n and (vidas==0 or pontos>=10):
+                if evento.key == pygame.K_n:
                     pygame.quit()
                     sys.exit()
             if evento.type== pygame.KEYUP:
@@ -342,13 +343,10 @@ def gameloop():
 
         #fim de jogo
 
-        #erro achado #melhor elaborar o codigo para quando "acaba o jogo", pois o jogador ainda pode atirar e marcar pontos
 
         #ganhou
         if pontos >= 10:
             passoudefase()
-
-            #aqui o "erro"
             for k in range(inimigos):
                 inimigoX[k]=3000
                 inimigoY[k]=3000
@@ -359,8 +357,6 @@ def gameloop():
         #perdeu
         elif vidas == 0:
             gameover()
-
-            #aqui o "erro"
             for k in range(inimigos):
                 inimigoX[k]=3000
                 inimigoY[k]=3000
