@@ -107,16 +107,16 @@ def dificult(x,y):
     dificu = fonte.render('Dificuldade:'+str(dificuldade),True,(0,0,0))
     tela.blit(dificu,(x,y))
 
-#print 'Vc morreu'
+#print 'Você morreu'
 def gameover():
-    fim = fontef.render('Vc morreu',True,(0,0,0))
+    fim = fontef.render('Você morreu',True,(0,0,0))
     continua = fonte.render('Jogar de novo?(s ou n)',True,(0,0,0))
     tela.blit(fim,(300,250))
     tela.blit(continua,(310,315))
 
-#print 'Parabens, vc passou de fase'
+#print 'Parabéns, você passou de fase'
 def passoudefase():
-    vitoria = fontef.render('Parabens, vc passou de fase', True, (0, 0, 0))
+    vitoria = fontef.render('Parabéns, você passou de fase', True, (0, 0, 0))
     continua = fonte.render('Continuar?(s ou n)', True, (0, 0, 0))
     tela.blit(vitoria, (200, 250))
     tela.blit(continua, (310, 315))
