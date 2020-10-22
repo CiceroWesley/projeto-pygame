@@ -213,8 +213,8 @@ def gameloop():
                         bala(balaX,balaY)
 
                 #tecla h para inimigos pararem de atirar e suas balas não tem efeito
-                if evento.key == pygame.K_h:
-                    inimigoATV= False
+                #if evento.key == pygame.K_h:
+                    #inimigoATV= False
             if evento.type == pygame.KEYDOWN and (vidas==0 or pontos>=10):
 
                 #tecla s para jogar de novo (codigo para reiniciar o jogo)
@@ -237,8 +237,8 @@ def gameloop():
                 if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT or evento.key == pygame.K_UP or evento.key==pygame.K_DOWN:
                     jogadorXmuda=0
                     jogadorYmuda=0
-                if evento.key == pygame.K_h:
-                    inimigoATV= True
+                #if evento.key == pygame.K_h:
+                    #inimigoATV= True
 
         #jogador
         jogadorX+=jogadorXmuda
