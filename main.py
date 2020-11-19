@@ -1,48 +1,37 @@
-import pygame, sys
-from random import randint
-from funcoes import *
-from funcoesfase1 import *
-from funcoesfase2 import *
-from funcoesfase3 import *
-from abertura import *
-from vitoria import *
+#esboço do codigo main.py
+try:
+    import pygame
+    import sys
+    from random import randint
+    from colisoes import *
+    from abertura import *
+    from impressoes import *
+    from uteis import *
+except ImportError:
+    print("Erro na importação.")
+except:
+    print("Erro desconhecido.")
+try:
+    pygame.init()
 
-pygame.init()
-animation()
+    animation()
 
-jogo=1
-nivel=1
+    nivel = 1
 
-while jogo==1:
+    while nivel <= 3:
+        fase(nivel)
+            #esperar usuario apertar "s" ou "n"
+        if vidas <=0:
+            gameover(nivel) #continuar a jogar ou não (se "n" o jogo fecha)
+            resetarfase(nivel) #pode ser redefinindo as posiçoes e velocidades de td para as iniciais (dos inimigos sendo aleatórias)
+        if pontos >= 10:
+            if nivel < 3:
+                passoudefase() #continuar a jogar ou não (se "n" o jogo fecha)
+            nivel += 1
 
-    resetarfase1()
-    while nivel==1:
-        fase1()
-        if vidas<=0:
-            gameover1() #continuar a jogar ou não (se "n" o jogo fecha)
-            resetarfase1()
-        if pontos>=10:
-            passoudefase() #continuar a jogar ou não (se "n" o jogo fecha)
-            nivel+=1
-
-    resetarfase2()
-    while nivel==2:
-        fase2()
-        if vidas<=0:
-            gameover2()
-            resetarfase2()
-        if pontos>=10:
-            passoudefase()
-            nivel+=1
-
-    resetarfase3()
-    while nivel==3:
-        fase3()
-        if vidas<=0:
-            gameover3()
-            resetarfase3()
-        if pontos>=10:
-            jogo=0 #vitoria na ultima fase
-
-#printar vitoria
-fim()
+    #printar vitoria
+    fim()
+except SystemError:
+    print("Erro interno detectado.")
+except:
+    print("Erro desconhecido.")

@@ -1,3 +1,5 @@
+#funções relacionadas à colisões
+
 # Para as colisões, vamos calcular com base no centro de cada objeto
 
 #inimigo tem 64x64 pixels (64 de largura e 64 de comprimento)
