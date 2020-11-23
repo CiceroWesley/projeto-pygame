@@ -104,7 +104,7 @@ def life(x,y):
 
 #print dificuldade
 def dificult(x,y):
-    dificu = fonte.render('Dificuldade:'+str(dificuldade),True,(0,0,0))
+    dificu = fonte.render('Nível:'+str(dificuldade),True,(0,0,0))
     tela.blit(dificu,(x,y))
 
 #print 'Vc morreu'
@@ -115,10 +115,16 @@ def gameover():
     tela.blit(continua,(310,315))
 
 #print 'Parabens, vc passou de fase'
-def passoudefase():
+'''def passoudefase():
     vitoria = fontef.render('Parabens, vc passou de fase', True, (0, 0, 0))
     continua = fonte.render('Continuar?(s ou n)', True, (0, 0, 0))
     tela.blit(vitoria, (200, 250))
+    tela.blit(continua, (310, 315))
+'''
+def ganhou():
+    vitoria = fontef.render('Parabens, ganhou', True, (0, 0, 0))
+    tela.blit(vitoria, (200, 250))
+    continua = fonte.render('Jogar de novo?(s ou n)', True, (0, 0, 0))
     tela.blit(continua, (310, 315))
 
 #abertura
@@ -178,8 +184,9 @@ def animation():
 
 #jogo
 def gameloop():
+    conte = 1
     #loop do jogo
-    global jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas, dificuldade
+    global inimigos,jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas, dificuldade
     while True:
 
         tela.blit(fundo,(0,0))
@@ -201,7 +208,8 @@ def gameloop():
                     
                 #tecla secreta    
                 if evento.key == pygame.K_f:
-                    pontos = 10
+                    pontos += 10
+
 
                 #tecla z para atirar
                 if evento.key == pygame.K_z:
@@ -217,11 +225,31 @@ def gameloop():
                     inimigoATV= False
 
                 #tecla s para jogar de novo (codigo para reiniciar o jogo)
-                if evento.key == pygame.K_s and (vidas==0 or pontos>=10):
+                if evento.key == pygame.K_s and (vidas==0 or pontos>40):
                     vidas=3
                     pontos=0
                     jogadorX=0
                     jogadorY=300
+                    dificuldade = 1
+                    conte = 1
+                    inter = 2
+                    if pontos >= 10 and pontos <20:
+                        inter = 1
+                    if pontos >= 20:
+                        inter = 2
+                    for i in range(inter):
+                        inimigofoto.pop()
+                        inimigoX.pop()
+                        inimigoY.pop()
+                        inimigoXmuda.pop()
+                        inimigoYmuda.pop()
+
+                        balaIfoto.pop()
+                        balaIX.pop()
+                        balaIY.pop()
+                        balaIXmuda.pop()
+                        balaIatira.pop()
+                        inimigos -=1
 
                     #gerando os inimigos
                     for j in range(inimigos):
@@ -229,7 +257,7 @@ def gameloop():
                         inimigoY[j] = randint(0,536)
 
                 #tecla n para sair quando jogo acabar
-                if evento.key == pygame.K_n and (vidas==0 or pontos>=10):
+                if evento.key == pygame.K_n and (vidas==0 or pontos>40):
                     pygame.quit()
                     sys.exit()
             if evento.type== pygame.KEYUP:
@@ -345,19 +373,47 @@ def gameloop():
         #erro achado #melhor elaborar o codigo para quando "acaba o jogo", pois o jogador ainda pode atirar e marcar pontos
 
         #ganhou
-        if pontos >= 10:
-            passoudefase()
 
-            #aqui o "erro"
+        if pontos >= 10 and pontos < 20:
+            if conte == 1:
+                inimigos = 6
+                dificuldade = 2
+                inimigofoto.append(pygame.image.load('imagens/inimigo2.png'))
+                inimigoX.append(randint(750, 836))
+                inimigoY.append(randint(0, 536))
+                inimigoXmuda.append(0)
+                inimigoYmuda.append(3)
+
+                balaIfoto.append(pygame.image.load('imagens/tiro2.png'))
+                balaIX.append(0)
+                balaIY.append(0)
+                balaIXmuda.append(-7)
+                balaIatira.append(1)
+                conte += 1
+
+        if pontos >= 20 and pontos < 40:
+            if conte == 2:
+                inimigos = 7
+                dificuldade = 3
+                inimigofoto.append(pygame.image.load('imagens/inimigo3.png'))
+                inimigoX.append(randint(750, 836))
+                inimigoY.append(randint(0, 536))
+                inimigoXmuda.append(0)
+                inimigoYmuda.append(3)
+
+                balaIfoto.append(pygame.image.load('imagens/tiro3.png'))
+                balaIX.append(0)
+                balaIY.append(0)
+                balaIXmuda.append(-7)
+                balaIatira.append(1)
+                conte += 1
+        if pontos > 40:
+            ganhou()
             for k in range(inimigos):
                 inimigoX[k]=3000
                 inimigoY[k]=3000
-            jogadorX=1000
-            jogadorY=0
-
-
         #perdeu
-        elif vidas == 0:
+        if vidas == 0:
             gameover()
 
             #aqui o "erro"
@@ -372,7 +428,7 @@ def gameloop():
         jogador(jogadorX,jogadorY)
         placar(pontosX,pontosY)
         life(0,27)
-        dificult(750,0)
+        dificult(805,0)
 
         #update da tela do jogo
         pygame.display.update()
