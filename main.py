@@ -225,19 +225,28 @@ def gameloop():
                     inimigoATV= False
 
                 #tecla s para jogar de novo (codigo para reiniciar o jogo)
-                if evento.key == pygame.K_s and (vidas==0 or pontos>40):
+                if evento.key == pygame.K_s and vidas==0:
                     vidas=3
                     pontos=0
                     jogadorX=0
                     jogadorY=300
                     dificuldade = 1
+                    inimigos = 5
                     conte = 1
-                    inter = 2
-                    if pontos >= 10 and pontos <20:
-                        inter = 1
-                    if pontos >= 20:
-                        inter = 2
-                    for i in range(inter):
+
+                    #gerando os inimigos
+                    for j in range(inimigos):
+                        inimigoX[j] = randint(750,836)
+                        inimigoY[j] = randint(0,536)
+                if evento.key == pygame.K_s and pontos > 40:
+                    conte = 1
+                    vidas = 3
+                    pontos = 0
+                    jogadorX = 0
+                    jogadorY = 300
+                    dificuldade = 1
+
+                    for i in range(2):
                         inimigofoto.pop()
                         inimigoX.pop()
                         inimigoY.pop()
@@ -249,13 +258,11 @@ def gameloop():
                         balaIY.pop()
                         balaIXmuda.pop()
                         balaIatira.pop()
-                        inimigos -=1
 
-                    #gerando os inimigos
+                    inimigos = 5
                     for j in range(inimigos):
                         inimigoX[j] = randint(750,836)
                         inimigoY[j] = randint(0,536)
-
                 #tecla n para sair quando jogo acabar
                 if evento.key == pygame.K_n and (vidas==0 or pontos>40):
                     pygame.quit()
