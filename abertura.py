@@ -1,5 +1,7 @@
+from globo import *
+from impressoes import *
 # abertura
-def animation():
+def animation(tela,jogadorfoto,fonte,fontef):
     fundo0 = pygame.image.load('imagens/0.png')
     running = True
     playerX = 150
@@ -15,9 +17,12 @@ def animation():
     enemy = 3
     posY = [130, 260, 390]
 
-    enemyfoto[1].append(pygame.image.load('imagens/inimigo1.png')) #será q é assim?
-    enemyfoto[2].append(pygame.image.load('imagens/inimigo2.png'))
-    enemyfoto[3].append(pygame.image.load('imagens/inimigo3.png'))
+    enemyfoto.append(pygame.image.load('imagens/inimigo1.png')) 
+    enemyfoto.append(pygame.image.load('imagens/inimigo2.png'))
+    enemyfoto.append(pygame.image.load('imagens/inimigo3.png'))
+    #enemyfoto[1].append(pygame.image.load('imagens/inimigo1.png')) #será q é assim?
+    #enemyfoto[2].append(pygame.image.load('imagens/inimigo2.png'))
+    #enemyfoto[3].append(pygame.image.load('imagens/inimigo3.png'))
 
     for i in range(enemy):
         enemyX.append(0)
@@ -39,7 +44,7 @@ def animation():
             tela.blit(enemyfoto[i], (enemyX[i], enemyY[i]))
 
         playerX += playerXmuda
-        jogador(playerX, playerY)
+        jogador(tela,jogadorfoto,playerX, playerY)
         pularanimacao = fonte.render('Pressiona P para pular...', True, (0, 0, 0))
 
         # print 'Pressiona P para pular...'

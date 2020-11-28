@@ -9,6 +9,7 @@
 
 #para calcular a distancia entre esses objetos devemos usar as coordenadas do centro de cada objeto
 #com a formula para calcular distancia entre pontos
+from globo import *
 
 
 def colisaoCinimigo(Xinimigo,Yinimigo,Xbala,Ybala):

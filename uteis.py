@@ -1,44 +1,57 @@
 #algumas funcoes uteis
+'''
 try:
     from impressoes import *
     from colisoes import *
+    from globo import *
 except:
     print("Erro na importação.")
+'''
+from impressoes import *
+from colisoes import *
+from globo import *
 
-def resetarfase(n):
+def resetarfase(n,jogadorX,jogadorY,jogadorXmuda,jogadorYmuda,pontos,vidas,inimigos,inimigofoto,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda):
     #criando a tela
-    lagalt = (900, 600)
-    tela = pygame.display.set_mode(lagalt)
+    #lagalt = (900, 600)
+    #tela = pygame.display.set_mode(lagalt)
+    
     if n == 1:
-        fundo = pygame.image.load('imagens/1.png')
+        #fundo = pygame.image.load('imagens/1.png')
+        fundo1 = pygame.image.load('imagens/1.png')
+        tela.blit(fundo1, (0, 0))
     if n == 2:
-        fundo = pygame.image.load('imagens/2.png')
+        #fundo = pygame.image.load('imagens/2.png')
+        fundo2 = pygame.image.load('imagens/2.png')
+        tela.blit(fundo2, (0, 0))
     if n == 3:
-        fundo = pygame.image.load('imagens/3.png')
-
+        #fundo = pygame.image.load('imagens/3.png')
+        fundo3 = pygame.image.load('imagens/3.png')
+        tela.blit(fundo3, (0, 0))        
+    
     #jogador
-    jogadorfoto = pygame.image.load('imagens/jogador.png')
-    jogadorX = 0
-    jogadorY = 300
-    jogadorXmuda = 0
-    jogadorYmuda = 0
-    vidas = 3
+    #jogadorfoto = pygame.image.load('imagens/jogador.png')
+    #jogadorX = 0
+    #jogadorY = 300
+    #jogadorXmuda = 0
+    #jogadorYmuda = 0
+    #vidas = 3
 
     #pontos
-    pontos = 0
-    fonte = pygame.font.Font('fontes/BebasNeue.ttf', 32)
-    pontosX = 0
-    pontosY = 0
-    fontef = pygame.font.Font('fontes/BebasNeue.ttf', 64)
+    #pontos = 0
+    #fonte = pygame.font.Font('fontes/BebasNeue.ttf', 32)
+    #pontosX = 0
+    #pontosY = 0
+    #fontef = pygame.font.Font('fontes/BebasNeue.ttf', 64)
 
     #inimigo
-    inimigofoto = []
-    inimigoX = []
-    inimigoY = []
-    inimigoXmuda = []
-    inimigoYmuda = []
-    inimigoATV = True
-    inimigos = 5
+    #inimigofoto = []
+    #inimigoX = []
+    #inimigoY = []
+    #inimigoXmuda = []
+    #inimigoYmuda = []
+    #inimigoATV = True
+    #inimigos = 5
     for i in range(inimigos):
         if n == 1:
             inimigofoto.append(pygame.image.load('imagens/inimigo1.png'))
@@ -52,19 +65,19 @@ def resetarfase(n):
         inimigoYmuda.append(3)
 
     #bala jogador
-    balafoto = pygame.image.load('imagens/balajogador.png')
-    balaX = 0
-    balaY = 0
-    balaXmuda = 8  # velocidade bala jogador
-    balaYmuda = 0
-    balaatira = 1
+    #balafoto = pygame.image.load('imagens/balajogador.png')
+    #balaX = 0
+    #balaY = 0
+    #balaXmuda = 8  # velocidade bala jogador
+    #balaYmuda = 0
+    #balaatira = 1
 
     # bala inimigo
-    balaIfoto = []
-    balaIX = []
-    balaIY = []
-    balaIXmuda = []
-    balaIatira = []
+    #balaIfoto = []
+    #balaIX = []
+    #balaIY = []
+    #balaIXmuda = []
+    #balaIatira = []
     for i in range(inimigos):
         if n == 1:
             balaIfoto.append(pygame.image.load('imagens/tiro1.png'))
@@ -76,15 +89,16 @@ def resetarfase(n):
         balaIY.append(0)
         balaIXmuda.append(-7)  # velocidade bala inimigo
         balaIatira.append(1)
-
+    '''
     if n == 1:
         tela.blit(fundo1, (0, 0))
     if n == 2:
         tela.blit(fundo2, (0, 0))
     if n == 3:
         tela.blit(fundo3, (0, 0))
+    '''
 
-def movimentajogador(jogadorY, jogadorY, jogadorXmuda, jogadorYmuda):
+def movimentajogador(jogadorX, jogadorY, jogadorXmuda, jogadorYmuda):
     jogadorX += jogadorXmuda
     jogadorY += jogadorYmuda
 
@@ -97,7 +111,7 @@ def movimentajogador(jogadorY, jogadorY, jogadorXmuda, jogadorYmuda):
     if jogadorY >= 536:  # 600-64=536
         jogadorY = 536
 
-def gameover(n):
+def gameover(n, tela):
     fim = fontef.render('Você morreu', True, (0, 0, 0))
     continua = fonte.render('Jogar de novo?(s ou n)', True, (0, 0, 0))
     tela.blit(fim, (300, 250))
@@ -106,7 +120,7 @@ def gameover(n):
     while tecla!='s' or tecla!='n' or tecla!='f':
         tecla=input()
     if tecla=='s' or tecla!='f':
-        resetarfase(n)
+        resetarfase(n,jogadorX,jogadorY,jogadorXmuda,jogadorYmuda,pontos,vidas,inimigos,inimigofoto,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda)
     if tecla =='n':
         pygame.quit()
         sys.exit()
@@ -138,7 +152,7 @@ def checarevento(jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, 
                 # tecla z para atirar
                 if evento.key == pygame.K_z:
                     if balaatira == 1:
-                        balasom = pygame.mixer.Sound('sons/fogojogador.wav')
+                        #balasom = pygame.mixer.Sound('sons/fogojogador.wav')
                         balasom.play()
                         balaX = jogadorX
                         balaY = jogadorY + 32  # 32 para a bala sair no meio do jogador (32=64/2)
@@ -152,7 +166,7 @@ def checarevento(jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, 
     except KeyboardInterrupt:
         print("Execução interrompida.")
 
-def movimentainimigo(n, inimigos, jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas):
+def movimentainimigo(n, inimigos,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda, jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas):
     for i in range(inimigos):
         inimigoY[i] += inimigoYmuda[i]
 
@@ -237,31 +251,33 @@ def atualizabala(jogadorX, balaX, balaY, balaatira, balaXmuda):
         bala(balaX, balaY)
         balaX += balaXmuda
 
-def fase(n):
-    global jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas
+def fase(n,tela,pontos, vidas,balasom,inimigos,jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira):
+    #global jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira
 
     # checando qual botão o jogador apertou (qual evento aconteceu)
-    checarevento(n, jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, balaY)
+    #checarevento(n, jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, balaY)
+    checarevento(jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, balaY)
 
     #movimentando o jogador
-    movimentajogador(n, jogadorY, jogadorY, jogadorXmuda, jogadorYmuda)
+    #movimentajogador(n, jogadorY, jogadorY, jogadorXmuda, jogadorYmuda)
+    movimentajogador(jogadorX, jogadorY, jogadorXmuda, jogadorYmuda)
 
     #movimentando o inimigo
-    movimentainimigo(n, inimigos, jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas)
+    movimentainimigo(n, inimigos,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda, jogadorX, jogadorY, jogadorXmuda, jogadorYmuda, balaX, balaY, balaXmuda, balaYmuda, inimigoATV, balaatira, pontos, vidas)
 
     #bala jogador
-    atualizabala()
+    atualizabala(jogadorX, balaX, balaY, balaatira, balaXmuda)
 
     #print valores do jogo
-    jogador(jogadorX, jogadorY)
-    placar(pontosX, pontosY)
-    life(0, 27)
-    level(750, 0)
+    jogador(tela,jogadorfoto,jogadorX, jogadorY)
+    placar(tela,pontos,pontosX, pontosY)
+    life(tela,vidas,fonte,0, 27)
+    level(tela,nivel,fonte,fontef750, 0)
 
     # update da tela do jogo
     pygame.display.update()
 
-def fim():
+def fim(fonte,fontef):
     v = fontef.render('Você ganhou!', True, (0, 0, 0))
     sair = fonte.render('Aperte qualquer tecla para sair do jogo', True, (0, 0, 0))
     tela.blit(v, (200, 250))
