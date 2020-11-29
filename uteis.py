@@ -116,14 +116,15 @@ def gameover(n, tela):
     continua = fonte.render('Jogar de novo?(s ou n)', True, (0, 0, 0))
     tela.blit(fim, (300, 250))
     tela.blit(continua, (310, 315))
-    tecla=''
-    while tecla!='s' or tecla!='n' or tecla!='f':
-        tecla=input()
-    if tecla=='s' or tecla!='f':
-        resetarfase(n,jogadorX,jogadorY,jogadorXmuda,jogadorYmuda,pontos,vidas,inimigos,inimigofoto,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda)
-    if tecla =='n':
-        pygame.quit()
-        sys.exit()
+    #esperar apertar o comando certo
+    for evento in pygame.event.get():
+        while evento.key != pygame.K_s or evento.key != pygame.K_f or evento.key != pygame.K_n or evento.type != pygame.QUIT:
+            if evento.type == pygame.KEYDOWN:
+                if evento.key == pygame.K_s or evento.key == pygame.K_f:
+                    resetarfase(n,jogadorX,jogadorY,jogadorXmuda,jogadorYmuda,pontos,vidas,inimigos,inimigofoto,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda)
+                if evento.key == pygame.K_n or evento.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
 
 def checarevento(jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, balaY):
     try:
