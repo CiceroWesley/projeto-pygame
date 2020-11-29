@@ -1,10 +1,34 @@
 import pygame,sys
 from random import randint
 from funcoes import *
+from outros import *
+from ini import *
+from jog import *
+from abert import *
+#from impressoes import *
 from time import sleep
 
 pygame.init()
+'''
+#jogador
+jogadorfoto = pygame.image.load('imagens/clown.png')
+jogadorX = 0
+jogadorY = 300
+jogadorXmuda=0
+jogadorYmuda=0
+dificuldade=1 #não utilizado ainda
+vidas=3
 
+#bala jogador
+balafoto = pygame.image.load('imagens/moon.png')
+balaX=0
+balaY=0
+balaXmuda=8 #velocidade bala jogador
+balaYmuda=0
+balaatira=1
+'''
+
+'''
 #criando a tela
 lagalt= (900,600)
 tela = pygame.display.set_mode(lagalt)
@@ -18,7 +42,9 @@ pygame.mixer.music.play(-1)
 pygame.display.set_caption('Magic Shooters')
 icone = pygame.image.load('imagens/hat.png')
 pygame.display.set_icon(icone)
+'''
 
+'''
 #jogador
 jogadorfoto = pygame.image.load('imagens/clown.png')
 jogadorX = 0
@@ -27,14 +53,18 @@ jogadorXmuda=0
 jogadorYmuda=0
 dificuldade=1 #não utilizado ainda
 vidas=3
+'''
 
+'''
 #pontos
 pontos=0
 fonte = pygame.font.Font('fontes/OldLondon.ttf',32)
 pontosX=0
 pontosY=0
 fontef = pygame.font.Font('fontes/OldLondon.ttf',64)
+'''
 
+'''
 #inimigo
 inimigofoto = []
 inimigoX = []
@@ -50,7 +80,9 @@ for i in range(inimigos):
     inimigoY.append(randint(0,536))
     inimigoXmuda.append(0)
     inimigoYmuda.append(3)
+'''
 
+'''
 #bala jogador
 balafoto = pygame.image.load('imagens/moon.png')
 balaX=0
@@ -58,7 +90,9 @@ balaY=0
 balaXmuda=8 #velocidade bala jogador
 balaYmuda=0
 balaatira=1
+'''
 
+'''
 #bala inimigo
 balaIfoto=[]
 balaIX=[]
@@ -71,14 +105,20 @@ for i in range(inimigos):
     balaIY.append(0)
     balaIXmuda.append(-7)
     balaIatira.append(1)
+'''
 
+'''
 #print jogador
 def jogador(x,y):
     tela.blit(jogadorfoto,(x,y))
+'''
 
+'''
 #print inimigo
 def inimigo(x,y,i):
     tela.blit(inimigofoto[i],(x,y))
+'''
+
 
 #print bala do jogador
 def bala(x,y):
@@ -86,11 +126,15 @@ def bala(x,y):
     balaatira=0
     tela.blit(balafoto,(x,y))
 
+
+'''
 #print balas dos inimigos
 def balaI(x,y,i):
     global balaIatira
     balaIatira[i]=0
     tela.blit(balaIfoto[i],(x,y))
+'''
+
 
 #print pontos
 def placar(x,y):
@@ -102,31 +146,39 @@ def life(x,y):
     vida = fonte.render('Vidas:'+str(vidas),True,(255,0,0))
     tela.blit(vida,(x,y))
 
+
 #print dificuldade
 def dificult(x,y):
     dificu = fonte.render('Nível:'+str(dificuldade),True,(0,0,0))
     tela.blit(dificu,(x,y))
 
+'''
 #print 'Vc morreu'
 def gameover():
     fim = fontef.render('Vc morreu',True,(0,0,0))
     continua = fonte.render('Jogar de novo?(s ou n)',True,(0,0,0))
     tela.blit(fim,(300,250))
     tela.blit(continua,(310,315))
+'''
 
+'''                                   Não está sendo usada por enquanto
 #print 'Parabens, vc passou de fase'
-'''def passoudefase():
+def passoudefase():
     vitoria = fontef.render('Parabens, vc passou de fase', True, (0, 0, 0))
     continua = fonte.render('Continuar?(s ou n)', True, (0, 0, 0))
     tela.blit(vitoria, (200, 250))
     tela.blit(continua, (310, 315))
 '''
+'''
+#Print 'Parabens, vc ganhou'
 def ganhou():
     vitoria = fontef.render('Parabens, ganhou', True, (0, 0, 0))
     tela.blit(vitoria, (200, 250))
     continua = fonte.render('Jogar de novo?(s ou n)', True, (0, 0, 0))
     tela.blit(continua, (310, 315))
+'''
 
+'''
 #abertura
 def animation():
     fundo2 = pygame.image.load('imagens/fundoab.png')
@@ -181,6 +233,7 @@ def animation():
             sleep(2)
             running=False
         pygame.display.update()
+'''
 
 #jogo
 def gameloop():
