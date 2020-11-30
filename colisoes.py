@@ -1,44 +1,38 @@
-#funções relacionadas à colisões
-
-# Para as colisões, vamos calcular com base no centro de cada objeto
-
-#inimigo tem 64x64 pixels (64 de largura e 64 de comprimento)
-#jogador tem 64x64 pixels
-#bala tem 32x32 pixels
-#balaI tem 32x32 pixels
-
-#para calcular a distancia entre esses objetos devemos usar as coordenadas do centro de cada objeto
-#com a formula para calcular distancia entre pontos
-from globo import *
+#para o calculo de distancia entre 2 objetos, vamos considerar as coordenadas de seus centros e que eles são circulos
+#jogador tem raio 32, já que é 64x64 pixels, analogamente:
+#inimigo tem raio 32
+#bala do jogador tem raio 16
+#bala do inimigo tem raio 16
 
 
-def colisaoCinimigo(Xinimigo,Yinimigo,Xbala,Ybala):
-    distancia = (((Xinimigo+16 - Xbala)**2)+((Yinimigo+16 - Ybala)**2))**0.5 #(64/2)-(32/2)=32-16=16
-    if distancia <48: #32+16=48
+#colisao bala do jogador e inimigo
+def colisaoCinimigo(iX, iY, balaX, balaY):
+    d1 = (((iX+16-balaX)**2)+((iY+16-balaY)**2))**0.5 #32-16=16
+    if d1<48: #32+16=48
         return True
     else:
         return False
 
-def colisaoCbalas(XbalaI,YbalaI,Xbala,Ybala):
-    distancia = (((XbalaI - Xbala)**2)+((YbalaI - Ybala)**2))**0.5 #(32/2)-(32/2)=16-16=0
-    if distancia <32: #16+16=32
+#colisao bala do jogador e bala do inimigo
+def colisaoCbalas(bIX, bIY, balaX, balaY):
+    d2 = (((bIX-balaX)**2)+((bIY-balaY)**2))**0.5 #16-16=0
+    if d2<32: #16+16=32
         return True
     else:
         return False
 
-def colisaoCjogador(Xjogador,Yjogador,XbalaI,YbalaI):
-    distancia = (((Xjogador+16 - XbalaI)**2)+((Yjogador+16 - YbalaI)**2))**0.5 #(64/2)-(32/2)=32-16=16
-    if distancia <48: #32+16=48
+#colisao jogador e bala do inimigo
+def colisaoCjogador(jogadorX, jogadorY, bIX, bIY):
+    d3 = (((jogadorX+16-bIX)**2)+((jogadorY+16-bIY)**2))**0.5 #32-16=16
+    if d3<48: #32+16=48
         return True
     else:
         return False
 
-#nova funçao - colisao jogador e inimigo
-def colisaoCjogadorEinimigo(Xjogador,Yjogador, Xinimigo,Yinimigo): #por algum motivo dá morte automática do jogador
-    distancia = (((Xjogador - Xinimigo)**2)+((Yjogador - Yinimigo)**2))**0.5 #(64/2)-(64/2)=32-32=0
-    if distancia <64: #32+32=64
+#colisao jogador e inimigo
+def colisaoCjogadorEinimigo(jogadorX,jogadorY,iX,iY):
+    d4 = (((jogadorX-iX)**2)+((jogadorY-iY)**2))**0.5 #32-32=0
+    if d4<64: #32+32=64
         return True
     else:
         return False
-
-#as outras funções não foram passadas por causa do "tela"
