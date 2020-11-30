@@ -259,8 +259,6 @@ def movimentainimigo(n):
         #colisao entre as balas
         c2 = colisaoCbalas(balaIX[i],balaIY[i],balaX,balaY)
         if c2 == True:
-            balasomIJ = pygame.mixer.Sound('sons/acertabalas.wav')
-            balasomIJ.play()
             balaX = jogadorX
             balaIX[i] = inimigoX[i]
             balaatira = 1
