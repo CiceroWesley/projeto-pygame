@@ -1,14 +1,11 @@
-'''
 try:
-    imports..
+    import pygame, sys
+    from random import randint
+    from colisoes import colisaoCinimigo, colisaoCbalas, colisaoCjogador, colisaoCjogadorEinimigo
+    from impressoes import jogador, bala, inimigo, balaI, placar, life, level
+    from time import sleep
 except:
     print("Erro na importação.")
-'''
-
-import pygame, sys
-from random import randint
-from colisoes import colisaoCinimigo, colisaoCbalas, colisaoCjogador, colisaoCjogadorEinimigo
-from impressoes import jogador, bala, inimigo, balaI, placar, life, level
 
 def resetarfase(n):
     #definindo o valor de todas as globais
@@ -86,7 +83,7 @@ def resetarfase(n):
         if n == 2:
             inimigofoto.append(pygame.image.load('imagens/inimigo2.png'))
         if n == 3:
-            inimigofoto.append(pygame.image.load('imagens/inimigo1.png'))
+            inimigofoto.append(pygame.image.load('imagens/inimigo3.png'))
         inimigoX.append(randint(700, 836))  #900-64=836
         inimigoY.append(randint(0, 536))  #600-64=536
         inimigoXmuda.append(0)
@@ -95,7 +92,7 @@ def resetarfase(n):
     #bala jogador
     balaX = 0
     balaY = 0
-    balaXmuda = 8
+    balaXmuda = 8*n
     balaYmuda = 0
     balaatira = 1
 
@@ -121,7 +118,6 @@ def movimentajogador():
     global jogadorX, jogadorY, jogadorXmuda, jogadorYmuda
     jogadorX += jogadorXmuda
     jogadorY += jogadorYmuda
-
     if jogadorX <= 0:
         jogadorX = 0
     if jogadorX >= 836:  # 900-64=836
@@ -131,37 +127,23 @@ def movimentajogador():
     if jogadorY >= 536:  # 600-64=536
         jogadorY = 536
 
-def esperar():
-    #esperar usuario apertar s, f, n ou fechar o programa
-    for evento in pygame.event.get():
-        while evento.key != pygame.K_s or evento.key != pygame.K_f or evento.key != pygame.K_n or evento.type != pygame.QUIT:
-            if evento.type == pygame.KEYDOWN:
-                if evento.key == pygame.K_n or evento.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-
 #printar que morreu
-def gameover(n):
+def gameover():
     global tela,fonte,fontef
     morte = fontef.render('Você morreu', True, (0, 0, 0))
-    denovo = fonte.render('Jogar de novo? (s ou n)', True, (0, 0, 0))
     tela.blit(morte, (300, 250))
-    tela.blit(denovo, (310, 315))
-
-    esperar()
+    pygame.display.update()
+    sleep(2)
 
 #printar que passou de fase
 def passoudefase():
     global tela,fonte,fontef
     passou = fontef.render('Você passou de fase', True, (0, 0, 0))
-    continua = fonte.render('Continuar? (s ou n)', True, (0, 0, 0))
     tela.blit(passou, (200, 250))
-    tela.blit(continua, (310, 315))
+    pygame.display.update()
+    sleep(2)
 
-    esperar()
-
-
-def checarevento():
+def checarevento(n):
     global jogadorXmuda, jogadorYmuda, pontos, balaatira, balasom, balaX, balaY
     try:
         #usuario
@@ -175,13 +157,13 @@ def checarevento():
             if evento.type == pygame.KEYDOWN:
                 #teclas para jogador se mover
                 if evento.key == pygame.K_LEFT:
-                    jogadorXmuda = -5
+                    jogadorXmuda = -5*n
                 if evento.key == pygame.K_RIGHT:
-                    jogadorXmuda = 5
+                    jogadorXmuda = 5*n
                 if evento.key == pygame.K_UP:
-                    jogadorYmuda = -5
+                    jogadorYmuda = -5*n
                 if evento.key == pygame.K_DOWN:
-                    jogadorYmuda = 5
+                    jogadorYmuda = 5*n
 
                 #tecla secreta (f)
                 if evento.key == pygame.K_f:
@@ -226,7 +208,7 @@ def movimentainimigo(n):
         #colisao com o inimigo
         c1 = colisaoCinimigo(inimigoX[i],inimigoY[i],balaX,balaY)
         if c1 == True:
-            somCI = pygame.mixer.Sound('sons/acertainimigo.wav')
+            somCI = pygame.mixer.Sound('sons/acertajogador.wav')
             somCI.play()
             balaX = jogadorX
             balaatira = 1
@@ -267,7 +249,7 @@ def movimentainimigo(n):
         #colisao com o jogador
         c3 = colisaoCjogador(jogadorX,jogadorY,balaIX[i],balaIY[i])
         if c3 == True:
-            somCJ = pygame.mixer.Sound('sons/acertajogador.wav')
+            somCJ = pygame.mixer.Sound('sons/acertainimigo.wav')
             somCJ.play()
             balaIX[i] = inimigoX[i]
             balaIatira[i] = 1
@@ -304,7 +286,8 @@ def fase(n):
         fundo3 = pygame.image.load('imagens/3.png')
         tela.blit(fundo3, (0, 0))
 
-    checarevento()
+    #tecla do usuario
+    checarevento(n)
 
     #movimentando o jogador
     movimentajogador()
@@ -325,36 +308,30 @@ def fase(n):
     pygame.display.update()
 
 def fim():
-    global fonte,fontef
+    global fonte,fontef,tela
     v = fontef.render('Você ganhou!', True, (0, 0, 0))
-    sair = fonte.render('Aperte qualquer tecla para sair do jogo', True, (0, 0, 0))
-    tela.blit(v, (200, 250))
-    tela.blit(sair, (280, 315))
-
-    # esperar usuario apertar qualquer tecla ou fechar o programa
+    tela.blit(v, (300, 250))
+    pygame.display.update()
+    sleep(5)
     for evento in pygame.event.get():
-        while evento.type != pygame.KEYDOWN:
             if evento.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-    pygame.quit()
-    sys.exit()
 
 #jogo
 def jogo():
     global vidas, pontos
-
     nivel = 1
     while nivel != 4:
         resetarfase(nivel)
         while nivel != 4:
             fase(nivel)
             if vidas <= 0:
-                gameover(nivel)
+                gameover()
                 resetarfase(nivel)
             if pontos >= 10:
                 if nivel < 3:
                     passoudefase()
                 nivel += 1
-            pygame.display.update()
+                break
     fim()

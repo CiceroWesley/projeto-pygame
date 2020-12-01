@@ -21,6 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="985e3489-002c-4074-9574-ea36efa49da3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/abertura.py" beforeDir="false" afterPath="$PROJECT_DIR$/abertura.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uteis.py" beforeDir="false" afterPath="$PROJECT_DIR$/uteis.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +127,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="460" y="105" width="424" height="506" key="FileChooserDialogImpl" timestamp="1606839870974">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="460" y="105" width="424" height="506" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606839870974" />
     <state width="1345" height="173" key="GridCell.Tab.0.bottom" timestamp="1603205669434">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
