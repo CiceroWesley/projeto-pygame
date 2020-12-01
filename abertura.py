@@ -1,5 +1,7 @@
-import pygame, sys
-
+try:
+    import pygame, sys
+except:
+    print("Erro na importação.")
 # abertura
 def animation():
     lagalt = (900, 600)

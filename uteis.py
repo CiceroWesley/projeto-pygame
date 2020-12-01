@@ -184,8 +184,8 @@ def checarevento(n):
                 if evento.key == pygame.K_LEFT or evento.key == pygame.K_RIGHT or evento.key == pygame.K_UP or evento.key == pygame.K_DOWN:
                     jogadorXmuda = 0
                     jogadorYmuda = 0
-    except KeyboardInterrupt:
-        print("Execução interrompida.")
+    except:
+        print("Erro nos eventos.")
 
 def movimentainimigo(n):
     global pontos,vidas,inimigos,inimigoX,inimigoXmuda,inimigoY,inimigoYmuda,inimigoATV,balaatira
