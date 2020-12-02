@@ -208,7 +208,7 @@ def movimentainimigo(n):
         #colisao com o inimigo
         c1 = colisaoCinimigo(inimigoX[i],inimigoY[i],balaX,balaY)
         if c1 == True:
-            somCI = pygame.mixer.Sound('sons/acertajogador.wav')
+            somCI = pygame.mixer.Sound('sons/acertainimigo.wav')
             somCI.play()
             balaX = jogadorX
             balaatira = 1
@@ -249,7 +249,7 @@ def movimentainimigo(n):
         #colisao com o jogador
         c3 = colisaoCjogador(jogadorX,jogadorY,balaIX[i],balaIY[i])
         if c3 == True:
-            somCJ = pygame.mixer.Sound('sons/acertainimigo.wav')
+            somCJ = pygame.mixer.Sound('sons/acertajogador.wav')
             somCJ.play()
             balaIX[i] = inimigoX[i]
             balaIatira[i] = 1

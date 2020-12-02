@@ -10,6 +10,11 @@ def animation():
     fonte = pygame.font.Font('fontes/BebasNeue.ttf', 32)
     fontef = pygame.font.Font('fontes/BebasNeue.ttf', 64)
 
+    # nome do jogo e icone
+    pygame.display.set_caption('Magic Shooters')
+    icone = pygame.image.load('imagens/icone.png')
+    pygame.display.set_icon(icone)
+
     fundo0 = pygame.image.load('imagens/0.png')
     running = True
     playerX = 150
