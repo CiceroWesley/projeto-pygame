@@ -4,7 +4,6 @@ try:
     from colisoes import colisaoCinimigo, colisaoCbalas, colisaoCjogador, colisaoCjogadorEinimigo
     from impressoes import jogador, bala, inimigo, balaI, placar, life, level
     from time import sleep
-    from test_pytest import *
 except:
     print("Erro na importação.")
 
@@ -314,8 +313,7 @@ def fase(n):
     placar(pontosX, pontosY, tela ,pontos ,fonte)
     life(0, 27, tela, vidas, fonte)
     level(750, 0, tela, n, fonte)
-    #printc(440, 229, tela, fonte)
-
+    
     #update da tela do jogo
     pygame.display.update()
 
