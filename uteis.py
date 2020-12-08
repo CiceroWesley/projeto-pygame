@@ -4,6 +4,7 @@ try:
     from colisoes import colisaoCinimigo, colisaoCbalas, colisaoCjogador, colisaoCjogadorEinimigo
     from impressoes import jogador, bala, inimigo, balaI, placar, life, level
     from time import sleep
+    from test_pytest import *
 except:
     print("Erro na importação.")
 
@@ -206,6 +207,8 @@ def movimentainimigo(n):
             inimigoX[i] += inimigoXmuda[i]
 
         #colisao com o inimigo
+        test_colisaoCinimigo()
+        test_colisaoCinimigo2()
         c1 = colisaoCinimigo(inimigoX[i],inimigoY[i],balaX,balaY)
         if c1 == True:
             somCI = pygame.mixer.Sound('sons/acertainimigo.wav')
@@ -239,6 +242,8 @@ def movimentainimigo(n):
             balaIX[i] += -7
 
         #colisao entre as balas
+        test_colisaoCbalas()
+        test_colisaoCbalas2()
         c2 = colisaoCbalas(balaIX[i],balaIY[i],balaX,balaY)
         if c2 == True:
             balaX = jogadorX
@@ -247,6 +252,9 @@ def movimentainimigo(n):
             balaIatira[i] = 1
 
         #colisao com o jogador
+        test_colisaoCjogador()
+        test_colisaoCjogador2()
+        test_colisaoCjogador3()
         c3 = colisaoCjogador(jogadorX,jogadorY,balaIX[i],balaIY[i])
         if c3 == True:
             somCJ = pygame.mixer.Sound('sons/acertajogador.wav')
@@ -256,6 +264,9 @@ def movimentainimigo(n):
             vidas -= 1
 
         #colisao com o jogador e o inimigo
+        test_colisaoCjogadorEinimigo()
+        test_colisaoCjogadorEinimigo2()
+        test_colisaoCjogadorEinimigo3()
         c4 = colisaoCjogadorEinimigo(jogadorX,jogadorY,inimigoX[i],inimigoY[i])
         if c4 == True:
             somCJ = pygame.mixer.Sound('sons/acertajogador.wav')
@@ -303,6 +314,7 @@ def fase(n):
     placar(pontosX, pontosY, tela ,pontos ,fonte)
     life(0, 27, tela, vidas, fonte)
     level(750, 0, tela, n, fonte)
+    #printc(440, 229, tela, fonte)
 
     #update da tela do jogo
     pygame.display.update()

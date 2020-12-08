@@ -36,10 +36,6 @@ def test_colisaoCinimigo2():
 def test_colisaoCbalas():
     assert colisaoCbalas(450, 300, 447, 297) == True
 
-'''for i in range(inimigos):
-    def test_colisaoCbalas(balaIX[i],balaIY[i],balaX,balaY):
-        assert colisaoCbalas(balaIX[i],balaIY[i],balaX,balaY) == True'''
-
 def test_colisaoCbalas2():
     assert colisaoCbalas(450, 300, 440, 290) == True
 
@@ -69,7 +65,7 @@ def test_colisaoCjogador3():
 (231-200)^2 + (345-300)^2 = 961 + 3136 = 4097 > 4096 = 64^2
 '''
 def test_colisaoCjogadorEinimigo():
-    assert colisaoCjogadorEinimigo(231, 345, 200, 300) == False
+    assert colisaoCjogadorEinimigo(231, 345, 200, 300) == True
 
 '''
 (316-300)^2 + (262-200)^2 = 256 + 3844 = 5000 > 4096 = 64^2
@@ -81,4 +77,4 @@ def test_colisaoCjogadorEinimigo2():
 (345-300)^2 + (155-200)^2 = 2025 + 2025 = 4050 < 4096 = 64^2
 '''
 def test_colisaoCjogadorEinimigo3():
-    assert colisaoCjogadorEinimigo(345,145,300,200) == True
+    assert colisaoCjogadorEinimigo(345,145,300,200) == False
