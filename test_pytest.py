@@ -61,20 +61,14 @@ def test_colisaoCjogador3():
 
 #colisao jogador e inimigo
 
-'''
-(231-200)^2 + (345-300)^2 = 961 + 3136 = 4097 > 4096 = 64^2
-'''
+
 def test_colisaoCjogadorEinimigo():
     assert colisaoCjogadorEinimigo(231, 345, 200, 300) == True
 
-'''
-(316-300)^2 + (262-200)^2 = 256 + 3844 = 5000 > 4096 = 64^2
-'''
+
 def test_colisaoCjogadorEinimigo2():
     assert colisaoCjogadorEinimigo(316,262,300,200) == False
 
-'''
-(345-300)^2 + (155-200)^2 = 2025 + 2025 = 4050 < 4096 = 64^2
-'''
+
 def test_colisaoCjogadorEinimigo3():
     assert colisaoCjogadorEinimigo(345,145,300,200) == False
